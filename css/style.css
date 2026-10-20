@@ -1,0 +1,101 @@
+:root{--ink:#100B19;--plum:#21102D;--rose:#FF7BAC;--lav:#A78BFA;--pearl:#FFF4FA;
+--serif:"Playfair Display",Georgia,serif;--sans:"Be Vietnam Pro",system-ui,sans-serif;--hand:"Dancing Script","Segoe Script",cursive}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:radial-gradient(120% 80% at 50% 0%,var(--plum),var(--ink) 60%) fixed;color:var(--pearl);font-family:var(--sans);font-weight:300;line-height:1.7;overflow-x:hidden}
+body.locked{overflow:hidden}
+#fx{position:fixed;inset:0;z-index:0;pointer-events:none}
+.gate,.app,.player,.lightbox{position:relative;z-index:1}
+:focus-visible{outline:2px solid var(--rose);outline-offset:3px}
+.display{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,8vw,5rem);line-height:1.1;text-shadow:0 0 40px rgba(255,123,172,.45)}
+.h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.6rem,4.5vw,2.6rem);margin-bottom:1.5rem;text-align:center}
+.lead{max-width:34rem;margin:1rem auto 0;color:rgba(255,244,250,.82);font-size:1.05rem}
+.kicker{font-family:var(--hand);font-size:1.5rem;color:var(--lav)}
+.small{text-align:center;color:rgba(255,244,250,.65);font-size:.95rem;font-variant-numeric:tabular-nums}
+
+.gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;text-align:center;padding:2rem;
+ background:radial-gradient(60% 50% at 50% 40%,rgba(167,139,250,.3),transparent 70%),radial-gradient(50% 40% at 50% 60%,rgba(255,123,172,.25),transparent 70%),var(--ink);
+ transition:opacity 1.2s ease,transform 1.2s ease,filter 1.2s}
+.gate[hidden]{display:none}
+.gate.open{opacity:0;transform:scale(1.35);filter:blur(10px);pointer-events:none}
+.orb{width:110px;margin:1.5rem auto;filter:drop-shadow(0 0 28px rgba(255,123,172,.8));animation:beat 1.8s ease-in-out infinite,spin 9s linear infinite}
+.small-orb{width:90px}
+.orb svg{display:block;width:100%}
+@keyframes beat{0%,100%{scale:1}15%{scale:1.14}30%{scale:1}45%{scale:1.1}}
+@keyframes spin{to{rotate:y 360deg}}
+.btn{margin-top:2rem;padding:.9rem 2.2rem;font:500 1rem var(--sans);color:var(--ink);background:linear-gradient(120deg,var(--rose),var(--lav));border:0;border-radius:999px;cursor:pointer;box-shadow:0 0 30px rgba(255,123,172,.5);transition:transform .25s,box-shadow .25s}
+.btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 46px rgba(255,123,172,.8)}
+
+.app{opacity:0;transition:opacity 1.4s ease .5s}
+.app[hidden]{display:none}
+.app.on{opacity:1}
+.section{max-width:760px;margin:0 auto;padding:7rem 1.5rem}
+.section.wide{max-width:1100px}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+.hero{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;padding:5rem 1rem 3rem;text-align:center}
+.names{font-family:var(--hand);font-size:clamp(1.6rem,5vw,2.4rem);color:var(--rose);margin-top:.5rem}
+.stage{perspective:1100px;width:100%;height:min(80vw,430px);display:grid;place-items:center;margin-top:1rem}
+.stack{position:relative;width:260px;height:340px;transform-style:preserve-3d;will-change:transform}
+.hp{position:absolute;inset:0;width:230px;height:300px;margin:auto;transform-style:preserve-3d;transition:transform 1.4s cubic-bezier(.65,0,.25,1)}
+.hp.front .hp-in{box-shadow:0 24px 60px rgba(0,0,0,.6),0 0 60px rgba(255,123,172,.55)}
+.hp-in{width:100%;height:100%;border-radius:10px;overflow:hidden;border:6px solid var(--pearl);box-shadow:0 20px 50px rgba(0,0,0,.55),0 0 40px rgba(255,123,172,.35);background:var(--plum)}
+.hp-in img,.polaroid img{width:100%;height:100%;object-fit:cover;display:block}
+.scroll-hint{font-size:.85rem;color:rgba(255,244,250,.5);animation:float 2.4s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(6px)}}
+
+.letter{padding:clamp(1.8rem,5vw,3.2rem);border-radius:24px;background:linear-gradient(145deg,rgba(255,244,250,.12),rgba(33,16,45,.55));border:1px solid rgba(255,244,250,.16);backdrop-filter:blur(12px);box-shadow:0 0 80px rgba(167,139,250,.2)}
+.letter-body{white-space:pre-wrap;font-family:var(--serif);font-size:1.1rem;line-height:1.95;min-height:14rem}
+.sign{margin-top:1.5rem;text-align:right;font:600 2rem var(--hand);color:var(--rose);opacity:0;transform:translateY(8px);transition:all 1.2s}
+.sign.show{opacity:1;transform:none;text-shadow:0 0 20px rgba(255,123,172,.7)}
+
+.grid{columns:3 240px;column-gap:1.6rem}
+.polaroid{display:block;width:100%;margin:0 0 1.6rem;padding:.7rem .7rem 0;background:var(--pearl);color:var(--ink);border:0;border-radius:4px;cursor:pointer;break-inside:avoid;text-align:center;box-shadow:0 14px 34px rgba(0,0,0,.5);rotate:var(--r);transition:opacity .9s,transform .4s,box-shadow .4s}
+.polaroid img{height:auto;aspect-ratio:4/5}
+.polaroid span{display:block;padding:.7rem .3rem .9rem;font:600 1.3rem var(--hand)}
+.polaroid.in:hover{transform:scale(1.05);box-shadow:0 22px 50px rgba(255,123,172,.35)}
+
+.finale{text-align:center;padding-bottom:4rem}
+.credit{text-align:center;padding:2rem 1rem 6rem;font-size:.85rem;color:rgba(255,244,250,.6);border-top:1px solid rgba(255,244,250,.1);max-width:760px;margin:0 auto}
+.credit b{color:var(--rose);font-weight:500}
+.credit a{color:var(--lav);text-decoration:none}
+.credit a:hover{text-decoration:underline}
+.infinity{margin-top:1rem;font:600 clamp(1.8rem,6vw,2.8rem) var(--hand);color:var(--lav)}
+
+.lightbox{position:fixed;inset:0;z-index:50;display:grid;place-items:center;background:rgba(16,11,25,.94);padding:1rem}
+.lightbox[hidden]{display:none}
+.lightbox figure{max-width:min(92vw,720px);text-align:center}
+.lightbox img{max-width:100%;max-height:78vh;border-radius:8px;box-shadow:0 0 60px rgba(255,123,172,.35)}
+.lightbox figcaption{margin-top:.8rem;font:600 1.5rem var(--hand)}
+.lb-btn{position:absolute;background:none;border:0;color:var(--pearl);font-size:2.6rem;cursor:pointer;padding:.5rem 1rem;transition:color .2s}
+.lb-btn:hover{color:var(--rose)}
+.lb-close{top:.5rem;right:.8rem}.lb-prev{left:.3rem}.lb-next{right:.3rem}
+
+.player{position:fixed;z-index:30;right:max(1rem,env(safe-area-inset-right));bottom:max(1rem,env(safe-area-inset-bottom));display:flex;align-items:center;gap:.7rem;padding:.5rem .9rem .5rem .5rem;border-radius:999px;background:rgba(33,16,45,.8);border:1px solid rgba(255,244,250,.18);backdrop-filter:blur(10px);max-width:calc(100vw - 2rem)}
+.player[hidden]{display:none}
+.p-btn{width:42px;height:42px;border-radius:50%;border:0;cursor:pointer;background:linear-gradient(120deg,var(--rose),var(--lav));display:grid;place-items:center;flex:none}
+.bars{display:flex;gap:3px;align-items:end;height:16px}
+.bars i{width:3px;height:6px;background:var(--ink);border-radius:2px}
+.playing .bars i{animation:eq .9s ease-in-out infinite}
+.playing .bars i:nth-child(2){animation-delay:.2s}.playing .bars i:nth-child(3){animation-delay:.4s}
+@keyframes eq{50%{height:16px}}
+.p-info{display:flex;flex-direction:column;font-size:.8rem;line-height:1.3;min-width:0}
+.p-info span:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:130px}
+.p-msg{color:var(--rose);font-size:.7rem}
+#vol{width:70px;accent-color:var(--rose)}
+@media(max-width:560px){#vol{display:none}.stack{scale:.62}.stage{height:min(95vw,420px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}.sign{opacity:1;transform:none}}
+
+/* Ảnh bay bay (dùng thuộc tính translate/rotate riêng nên không xung đột với transform của tilt) */
+.hp-in{animation:drift 7s ease-in-out infinite}
+.hp:nth-child(2) .hp-in{animation-duration:8.5s;animation-delay:-2s}
+.hp:nth-child(3) .hp-in{animation-duration:9s;animation-delay:-4s}
+.hp:nth-child(4) .hp-in{animation-duration:7.5s;animation-delay:-1s}
+.hp:nth-child(5) .hp-in{animation-duration:10s;animation-delay:-5s}
+@keyframes drift{0%,100%{translate:0 0;rotate:-1.5deg}50%{translate:0 -16px;rotate:1.5deg}}
+.polaroid{animation:bob 6s ease-in-out infinite}
+.polaroid:nth-child(2n){animation-duration:7.5s;animation-delay:-2s}
+.polaroid:nth-child(3n){animation-duration:9s;animation-delay:-4s}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -10px}}
+.polaroid:hover{animation-play-state:paused}
