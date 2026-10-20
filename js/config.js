@@ -31,12 +31,12 @@ window.CONFIG = {
   albumTitle: "Những khoảnh khắc đẹp của em",
   // Thêm/xóa ảnh bằng cách thêm/xóa dòng. Ảnh nằm trong assets/images/
   photos: [   // ảnh đầu tiên sẽ nằm giữa lúc mở thiệp
-    { src: "assets/images/couple_3.jpg", caption: "Dạo phố đêm.." },
-    { src: "assets/images/couple6.jpg", caption: "Gần nhau thật gần" },
-    { src: "assets/images/couple6_.jpg", caption: "Quậy quá chời luôn. Haha" },
-    { src: "assets/images/couple2.jpg", caption: "Tạo dáng kiểu gì đây?" },
-    { src: "assets/images/couple1.jpg", caption: "Anh, em & photobooth " },
-    { src: "assets/images/couple5.jpg", caption: "Lượn lờ cùng nhau nè" }
+    { src: "assets/images/couple1.jpg", caption: "Dạo phố đêm.." },
+    { src: "assets/images/couple4.jpg", caption: "Gần nhau thật gần" },
+    { src: "assets/images/couple2.jpg", caption: "Quậy quá chời luôn. Haha" },
+    { src: "assets/images/couple5.jpg", caption: "Tạo dáng kiểu gì đây?" },
+    { src: "assets/images/couple3.jpg", caption: "Anh, em & photobooth " },
+    { src: "assets/images/couple6.jpg", caption: "Lượn lờ cùng nhau nè" }
   ],
   heroPhotoCount: 5,                // số ảnh đầu danh sách dùng cho cụm 3D xoay vòng (tối đa 5)
   rotateEveryMs: 3600,              // thời gian giữa mỗi lần các ảnh đổi chỗ
